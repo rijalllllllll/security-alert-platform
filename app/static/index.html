@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Alert Management Platform</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo">🛡️</span>
+      <div>
+        <h1>Security Alert Management Platform</h1>
+        <p class="sub">SOC alert triage · classification · enrichment</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="loginBtn" class="btn ghost">API Key</button>
+      <button id="refreshBtn" class="btn">Refresh</button>
+    </div>
+  </header>
+
+  <section id="stats" class="stats"></section>
+
+  <section class="filters">
+    <input id="q" type="search" placeholder="Search title, description, IP, domain…" />
+    <select id="fSeverity">
+      <option value="">All severities</option>
+      <option value="critical">Critical</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+      <option value="info">Info</option>
+    </select>
+    <select id="fStatus">
+      <option value="">All statuses</option>
+      <option value="new">New</option>
+      <option value="analyzing">Analyzing</option>
+      <option value="escalated">Escalated</option>
+      <option value="false_positive">False positive</option>
+      <option value="resolved">Resolved</option>
+    </select>
+    <select id="fSource">
+      <option value="">All sources</option>
+    </select>
+  </section>
+
+  <main>
+    <table id="alertsTable">
+      <thead>
+        <tr>
+          <th>Severity</th><th>Title</th><th>Source</th><th>IOC</th><th>Status</th>
+          <th>Class.</th><th>Assignee</th><th>Created</th>
+        </tr>
+      </thead>
+      <tbody id="alertsBody"></tbody>
+    </table>
+  </main>
+
+  <div id="detailOverlay" class="overlay hidden">
+    <div class="panel" id="detailPanel"></div>
+  </div>
+
+  <div id="loginOverlay" class="overlay hidden">
+    <div class="login-card">
+      <h3>API Key required</h3>
+      <p>Enter an <code>X-API-Key</code> value (see <code>ALERT_API_KEYS</code> in your <code>.env</code>).</p>
+      <input id="apiKeyInput" type="password" placeholder="X-API-Key" autocomplete="off" />
+      <div class="row">
+        <button id="loginConfirm" class="btn">Save key</button>
+        <button id="loginCancel" class="btn ghost">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
